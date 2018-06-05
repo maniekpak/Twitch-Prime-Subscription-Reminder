@@ -17,7 +17,10 @@
 
     function init() {
         intervalDropDown = window.setInterval(function() {
-            subscribeDropDown = document.body.querySelector('.tw-button[data-a-target="subscribe-button"]');
+            subscribeDropDown = document.body.querySelector('.tw-button[data-a-target="subscribed-button"]');
+            if(!subscribeDropDown) {
+                subscribeDropDown = document.body.querySelector('.tw-button[data-a-target="subscribe-button"]');
+            }
             if(subscribeDropDown) {
                 clearInterval(intervalDropDown);
                 forceClick();
