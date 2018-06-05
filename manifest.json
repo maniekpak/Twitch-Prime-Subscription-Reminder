@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Twitch Prime Subscription Reminder",
   "description": "This will switch the purple 'Subscribe' button to a bright orange when your free subscription is ready to be used",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "icons": {
     "64": "icons/icon64.png",
     "128": "icons/icon128.png"
