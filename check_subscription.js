@@ -8,6 +8,13 @@
     var intervalButton;
     var intervalDropDown;
 
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        if (request.message === 'urlChanged') {
+            clearTimers();
+            init();
+        }
+    });
+
     function init() {
         intervalDropDown = window.setInterval(function() {
             subscribeDropDown = document.body.querySelector('.tw-button[data-a-target="subscribe-button"]');
@@ -19,8 +26,7 @@
 
         //Stop the process after 10 seconds.
         failsafeTimeout = window.setTimeout(function() {
-            clearInterval(intervalDropDown);
-            clearInterval(intervalButton);
+            clearTimers();
             resetWebsiteToNormal();
         }, 10000);
     }
@@ -45,10 +51,15 @@
                 if(!subscribeButton.disabled && subscribeButton.tagName.toLowerCase() === "button") {
                     subscribeDropDown.setAttribute("style", "background:#ff7c08");
                 }
-                clearInterval(intervalButton);
-                clearTimeout(failsafeTimeout);
+                clearTimers();
             }
         }, 100);
+    }
+
+    function clearTimers() {
+        clearInterval(intervalButton);
+        clearTimeout(failsafeTimeout);
+        clearInterval(intervalDropDown);
     }
 
     function resetWebsiteToNormal() {
